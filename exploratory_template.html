@@ -369,9 +369,49 @@ summary {
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<div id="use-this-script" class="section level2">
+<h2>Use this script!</h2>
+<p>Coders use templates and code snippets all the time to start their analysis or find solutions to common problems. This is intended to be a starting point for a number of projects you will work on going forward.</p>
+<p>Things we will commonly want to do in an RMarkdown:</p>
+<ul>
+<li>Import data (from a .csv, from an API, etc.)</li>
+<li>Tidy data (ensure it is structured in a consistent tabular format)</li>
+<li>Exploratory cycle - visualize, transform</li>
+<li>Narrative, share, export - you’re done!</li>
+</ul>
+<div id="import-data" class="section level3">
+<h3>Import data</h3>
+<p>This step usually requires using the <code>readr</code> library, which is happy grabbing data from a variety of sources.</p>
+<p>We want to bring in a .csv from a location online AND store it in a variable we can use</p>
+<pre class="r"><code>covid_polling_data &lt;- read_csv('https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls.csv')</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   start_date = col_date(format = &quot;&quot;),
+##   end_date = col_date(format = &quot;&quot;),
+##   pollster = col_character(),
+##   sponsor = col_character(),
+##   sample_size = col_double(),
+##   population = col_character(),
+##   party = col_character(),
+##   subject = col_character(),
+##   tracking = col_logical(),
+##   text = col_character(),
+##   approve = col_double(),
+##   disapprove = col_double(),
+##   url = col_character()
+## )</code></pre>
+<pre class="r"><code>head(covid_polling_data)</code></pre>
+<pre><code>## # A tibble: 6 x 13
+##   start_date end_date   pollster sponsor sample_size population party subject
+##   &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  
+## 1 2020-07-03 2020-07-06 YouGov   Huffin…        1000 a          all   Trump  
+## 2 2020-07-03 2020-07-06 YouGov   Huffin…         226 a          R     Trump  
+## 3 2020-07-03 2020-07-06 YouGov   Huffin…         354 a          D     Trump  
+## 4 2020-07-03 2020-07-06 YouGov   Huffin…         408 a          I     Trump  
+## 5 2020-06-29 2020-07-05 SurveyM… NBC Ne…       44557 a          all   Trump  
+## 6 2020-06-29 2020-07-05 SurveyM… NBC Ne…       16924 a          R     Trump  
+## # … with 5 more variables: tracking &lt;lgl&gt;, text &lt;chr&gt;, approve &lt;dbl&gt;,
+## #   disapprove &lt;dbl&gt;, url &lt;chr&gt;</code></pre>
 <p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
 <pre class="r"><code>summary(cars)</code></pre>
 <pre><code>##      speed           dist       
@@ -381,6 +421,7 @@ summary {
 ##  Mean   :15.4   Mean   : 42.98  
 ##  3rd Qu.:19.0   3rd Qu.: 56.00  
 ##  Max.   :25.0   Max.   :120.00</code></pre>
+</div>
 </div>
 <div id="including-plots" class="section level2">
 <h2>Including Plots</h2>

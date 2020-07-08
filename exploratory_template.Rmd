@@ -7,11 +7,33 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 ```
 
-## R Markdown
+## Use this script!
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Coders use templates and code snippets all the time to start their analysis or find solutions to common problems. This is intended to be a starting point for a number of projects you will work on going forward.
+
+Things we will commonly want to do in an RMarkdown:
+
+* Import data (from a .csv, from an API, etc.)
+* Tidy data (ensure it is structured in a consistent tabular format)
+* Exploratory cycle - visualize, transform
+* Narrative, share, export - you're done!
+
+### Import data
+
+This step usually requires using the `readr` library, which is happy grabbing data from a variety of sources.
+
+We want to bring in a .csv from a location online AND store it in a variable we can use
+
+```{r}
+covid_polling_data <- read_csv('https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls.csv')
+
+head(covid_polling_data)
+```
+
+
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
