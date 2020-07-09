@@ -27,26 +27,25 @@ This step usually requires using the `readr` library, which is happy grabbing da
 
 We want to bring in a .csv from a location online AND store it in a variable we can use
 
-```{r}
-covid_polling_data <- read_csv('https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls.csv')
+```{r message=FALSE}
+covid_concern <- read_csv('https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_concern_polls.csv')
 
-head(covid_polling_data)
+head(covid_concern)
 ```
 
 
+We'd like to compare the distributions of "very", "somewhat", "not-very", and "not-at-all" responses across all polls.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r message=FALSE}
+covid_concern_long <- covid_concern %>%
+  pivot_longer(c('very', 'somewhat', 'not_very', 'not_at_all'), names_to = "response", values_to = "response_percentage") %>%
+  select('start_date', 'pollster', 'subject', 'response', 'response_percentage')
 
-```{r cars}
-summary(cars)
+covid_concern_long %>%
+  filter(subject=="concern-infected") %>%
+  ggplot(mapping = aes(y = response_percentage, fill = response)) +
+  geom_boxplot()
+
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
